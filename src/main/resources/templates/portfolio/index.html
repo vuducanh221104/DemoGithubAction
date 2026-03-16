@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Vũ Đức Anh</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">Portfolio</a>
+            <nav class="nav">
+                <a href="#about">Giới thiệu</a>
+                <a href="#skills">Kỹ năng</a>
+                <a href="#projects">Dự án</a>
+                <a href="#contact">Liên hệ</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Xin chào, tôi là <span class="highlight" th:text="${name}">Vũ Đức Anh</span></h1>
+                <p class="hero-title" th:text="${title}">Full Stack Developer</p>
+                <p class="hero-desc" th:text="${about}">Tôi là một lập trình viên đam mê công nghệ</p>
+                <div class="hero-buttons">
+                    <a href="#projects" class="btn btn-primary">Xem dự án</a>
+                    <a href="#contact" class="btn btn-outline">Liên hệ ngay</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title">Kỹ năng</h2>
+            <div class="skills-grid">
+                <div class="skill-card" th:each="skill : ${skills}">
+                    <span th:text="${skill}">Java</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Dự án</h2>
+            <div class="projects-grid">
+                <div class="project-card" th:each="project : ${projects}">
+                    <div class="project-icon">
+                        <i class="fas fa-folder"></i>
+                    </div>
+                    <h3 th:text="${project.name}">Project Name</h3>
+                    <p th:text="${project.desc}">Project description</p>
+                    <div class="project-tech">
+                        <span th:each="t : ${#strings.arraySplit(project.tech, ', ')}" th:text="${t}">Tech</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">Liên hệ</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span th:text="${contact.email}">email@example.com</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span th:text="${contact.phone}">+84 123 456 789</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span th:text="${contact.location}">Hà Nội, Việt Nam</span>
+                </div>
+                <div class="contact-item">
+                    <i class="fab fa-github"></i>
+                    <span th:text="${contact.github}">github.com/vuducanh</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 <span th:text="${name}">Vũ Đức Anh</span>. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
